@@ -67,19 +67,19 @@ body{
 }
 
 .action-btn-cont>*:hover{
-    background-color: lightcoral;
+    background-color: #485460;
     border-radius: 5px;
     height: 4rem;
 }
 
 .toolbox-priority-cont>*:hover{
-    background-color: lightcoral;  
+    background-color: #485460;  
 }
 
 .model-cont{
     height: 50vh;
     width: 50vw;
-    background-color: #D6A2E8;
+    background-color: lightblue;
     position: absolute;
     top: calc((100vh - 50vh) / 2);
     left: calc((100vw - 50vw) / 2);
@@ -90,7 +90,7 @@ body{
     height: 100%;
     width: 75%;
     outline: none;
-    background-color: lightblue;
+    background-color: #dfe4ea;
     resize: none;
     font-size: 2rem;
     padding: 2rem;
@@ -103,6 +103,7 @@ body{
     flex-direction:column;
     justify-content: space-around;
     align-items: center;
+    background-color: #4b4b4b;
 
 }
 
@@ -112,5 +113,34 @@ body{
 }
 
 .active{
-    border: 5px solid red;
+    border: 5px solid #d1d8e0;
+}
+
+.main-cont{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+
+}
+
+.ticket-cont{
+    height: 12rem;
+    width: 15rem;
+    background-color: darkseagreen;
+}
+
+.ticket-color{
+    height: 1rem;
+    background-color: black;
+}
+
+.ticket-id{
+    height: 1rem;
+    background-color: gray;   
+}
+
+.ticket-area{
+    height: calc(100% - 1rem - 2rem);
+    font-size: 1.5rem;
+    padding: 5px;
 }
