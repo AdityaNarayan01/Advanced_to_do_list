@@ -44,17 +44,17 @@ modalCont.addEventListener("keydown", function (e) {
   let key = e.key;
 
   if (key == "Shift") {
-    createTicket(); //this function will generate the ticket
+    createTicket(modalPriorityColor); //this function will generate the ticket
     modalCont.style.display = "none";
     addFlag = false;
   }
 });
 
-function createTicket() {
+function createTicket(ticketColor) {
   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
 
-  ticketCont.innerHTML = `<div class="ticket-color"></div>
+  ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div>
   <div class="ticket-id"></div>
   <div class="ticket-area"></div>`;
 
