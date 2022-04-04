@@ -11,6 +11,8 @@ let allPriorityColors = document.querySelectorAll(".priority-color");
 
 let mainCont = document.querySelector(".main-cont");
 
+let textAreaCont = document.querySelector(".textarea-cont");
+
 addbutton.addEventListener("click", function (e) {
   //display a model
 
@@ -44,19 +46,34 @@ modalCont.addEventListener("keydown", function (e) {
   let key = e.key;
 
   if (key == "Shift") {
-    createTicket(modalPriorityColor); //this function will generate the ticket
+    createTicket(modalPriorityColor, textAreaCont.value); //this function will generate the ticket
     modalCont.style.display = "none";
     addFlag = false;
+    textAreaCont.value = "";
   }
 });
 
-function createTicket(ticketColor) {
+function createTicket(ticketColor, ticketValue) {
   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
 
   ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div>
   <div class="ticket-id"></div>
-  <div class="ticket-area"></div>`;
+  <div class="ticket-area">${ticketValue}</div>`;
 
   mainCont.appendChild(ticketCont);
+
+  handleRemoval(ticketCont)
+}
+
+removeButton.addEventListener("click", function (e) {
+  removeFlag = !removeButton;
+});
+
+function handleRemoval(ticket) {
+  ticket.addEventListener("click", function () {
+    if (removeFlag == true) {
+      ticket.remove();
+    }
+  });
 }
