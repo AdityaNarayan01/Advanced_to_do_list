@@ -113,13 +113,15 @@ body{
 }
 
 .active{
-    border: 5px solid #d1d8e0;
+    border: 5px solid red;
 }
 
 .main-cont{
     display: flex;
     gap: 2rem;
     justify-content: center;
+    padding: 2rem;
+    flex-wrap: wrap;
 
 }
 
