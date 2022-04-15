@@ -4,6 +4,9 @@ let modalCont = document.querySelector(".model-cont");
 
 let addFlag = false;
 
+let removeBtn = document.querySelector(".remove-btn");
+let removeFlag = false;
+
 let colors = ["lightpink", "lightblue", "lightgreen", "black"];
 let modalPriorityColor = colors[colors.length - 1]; //black
 
@@ -12,6 +15,9 @@ let allPriorityColors = document.querySelectorAll(".priority-color");
 let mainCont = document.querySelector(".main-cont");
 
 let textAreaCont = document.querySelector(".textarea-cont");
+
+let lockClass = "fa-lock";
+let unclockClass = "fa-lock-open";
 
 addbutton.addEventListener("click", function (e) {
   //display a model
@@ -28,7 +34,7 @@ addbutton.addEventListener("click", function (e) {
   }
 });
 
-//Change in priority colors
+/************************************************ Change in priority colors ***********************************************/
 
 allPriorityColors.forEach(function (colorElem) {
   colorElem.addEventListener("click", function (e) {
@@ -53,27 +59,63 @@ modalCont.addEventListener("keydown", function (e) {
   }
 });
 
+/*********************************************** creates ticket  ***********************************************/
+
 function createTicket(ticketColor, ticketValue) {
-  let ticketCont = document.createElement("div");
+   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
 
-  ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div>
-  <div class="ticket-id"></div>
-  <div class="ticket-area">${ticketValue}</div>`;
+  ticketCont.innerHTML = `   <div class="ticket-color ${ticketColor}"></div>
+  <div class="ticket-id">Sample id</div>
+  <div class="task-area">${ticketValue}</div>
+  <div class="ticket-lock">
+      <i class="fa-solid fa-lock"></i>
+  </div>`;
 
   mainCont.appendChild(ticketCont);
 
-  handleRemoval(ticketCont)
+  handleRemoval(ticketCont);
+
+  handleLock(ticketCont);
 }
 
-removeButton.addEventListener("click", function (e) {
-  removeFlag = !removeButton;
+removeBtn.addEventListener("click", function () {
+  removeFlag = !removeFlag;
+  if (removeFlag == true) {
+    removeBtn.style.color = "red";
+  } else {
+    removeBtn.style.color = "white";
+  }
 });
 
+//remove tickets
 function handleRemoval(ticket) {
   ticket.addEventListener("click", function () {
     if (removeFlag == true) {
       ticket.remove();
+    }
+  });
+}
+
+//************************************************Lock and unclock tickets/***********************************************
+function handleLock(ticket) {
+  let ticketLockElem = document.querySelector(".ticket-lock");
+
+  let ticketLock = ticketLockElem.children[0];
+
+  let ticketTaskArea = ticket.querySelector(".task-area")
+
+  ticketLock.addEventListener("click", function (e) {
+    if (ticketLock.classList.contains(lockClass)) {
+      ticketLock.classList.remove(lockClass);
+      ticketLock.classList.add(unclockClass);
+      ticketTaskArea.setAttribute('contenteditable' , 'true');
+
+
+    } else {
+      ticketLock.classList.remove(unclockClass);
+      ticketLock.classList.add(lockClass);
+      ticketTaskArea.setAttribute('contenteditable' , 'false');
     }
   });
 }
